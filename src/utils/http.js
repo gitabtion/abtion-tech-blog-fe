@@ -1,8 +1,8 @@
 /* eslint-disable */
 import axios from 'axios'
-import store from './store/store'
-import * as types from './store/types'
-import router from './router'
+import store from '../store/store'
+import * as types from '../store/types'
+import router from '../router'
 
 // axios 配置
 axios.defaults.timeout = 5000;
@@ -30,11 +30,11 @@ axios.interceptors.response.use(
     error => {
         if (error.response) {
             console.log(error.response);
-            alert(error.response.data.message);
+            alert(error.response.data.message,2000);
             switch (error.response.status) {
                 case 401:
                     // 401 清除token信息并跳转到登录页面
-                    store.commit(types.LOGOUT)
+                    store.commit(types.LOGOUT);
 
                     // 只有在当前路由不是登录页面才跳转
                     router.currentRoute.path !== 'login' &&
