@@ -1,3 +1,5 @@
 export default {
-    login: '/user/login'
+    login: '/user/login',
+    register: '/user/register',
+    createEssay: '/essay/create'
 }

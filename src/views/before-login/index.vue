@@ -3,46 +3,11 @@
         <md-card class="before-login-card">
             <h2 style="margin: auto">Abtion Tech</h2>
             <md-tabs md-sync-route md-alignment="centered">
-                <md-tab id="tab-login" md-label="登录" to="/login" class="tab" style="height: max-content">
-
-                    <md-field :class="usernameInput">
-                        <label>用户名</label>
-                        <md-input v-model="username"></md-input>
-                        <span class="md-error" v-show="hasNameError">{{usernameError}}</span>
-                    </md-field>
-                    <md-field :class="passwordInput">
-                        <label>密码</label>
-                        <md-input v-model="password" type="password"></md-input>
-                        <span class="md-error" v-show="hasPasswordError">{{passwordError}}</span>
-                    </md-field>
-
-                    <md-button class="md-raised md-primary" style="justify-content: center" v-on:click="loginOnclick">
-                        登录
-                    </md-button>
+                <md-tab id="tab-login" md-label="登录" to="/before-login/login" class="tab" style="height: max-content">
+                    <router-view/>
                 </md-tab>
-                <md-tab id="tab-register" md-label="注册" class="tab">
-                    <md-field :class="usernameInput">
-                        <label>用户名</label>
-                        <md-input v-model="username"></md-input>
-                        <span class="md-error" v-show="hasNameError">{{usernameError}}</span>
-                    </md-field>
-                    <md-field :class="passwordInput">
-                        <label>密码</label>
-                        <md-input v-model="password" type="password"></md-input>
-                        <span class="md-error" v-show="hasPasswordError">{{passwordError}}</span>
-                    </md-field>
-                    <md-field :class="passwordInput">
-                        <label>确认密码</label>
-                        <md-input v-model="verifyPassword" type="password"></md-input>
-                        <span class="md-error" v-show="hasVerifyPasswordError">{{verifyPasswordError}}</span>
-                    </md-field>
-                    <div style="display: flex;justify-content: center">
-                        <md-radio v-model="radio" value='0' >女</md-radio>
-                        <md-radio v-model="radio" value='1'  class="md-primary">男</md-radio>
-                    </div>
-                    <md-button class="md-raised md-primary" style="justify-content: center" v-on:click="registerOnclick">
-                        注册
-                    </md-button>
+                <md-tab id="tab-register" md-label="注册" class="tab" to="/before-login/register">
+                    <router-view/>
                 </md-tab>
             </md-tabs>
         </md-card>
@@ -51,13 +16,11 @@
 
 <script>
     /* eslint-disable */
-    import api from "../constant/api";
-    import * as types from '../store/types'
-    import AppFooter from "./AppFooter";
+    import api from "../../constant/api";
+    import * as types from '../../store/types'
 
     export default {
-        name: 'login',
-        components: {AppFooter},
+        name: 'before-login',
         data() {
             return {
                 username: '',
@@ -115,7 +78,7 @@
                         this.verifyPasswordError = '密码不一致！';
                         this.hasVerifyPasswordError = true;
                     }
-                } 
+                }
             },
             hasError: function () {
                 if (this.username.length === 0) {

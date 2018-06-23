@@ -2,7 +2,7 @@
 import axios from 'axios'
 import store from '../store/store'
 import * as types from '../store/types'
-import router from '../router'
+import router from '../routes/index'
 
 // axios 配置
 axios.defaults.timeout = 5000;
@@ -30,7 +30,7 @@ axios.interceptors.response.use(
     error => {
         if (error.response) {
             console.log(error.response);
-            alert(error.response.data.message,2000);
+            alert(error.response.data.message);
             switch (error.response.status) {
                 case 401:
                     // 401 清除token信息并跳转到登录页面

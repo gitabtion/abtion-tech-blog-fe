@@ -1,7 +1,7 @@
 <template>
-    <md-content class="md-elevation-4" style="height: 50px;position: absolute;bottom: 0;width: 100%">
+    <div class="test" style="width: 100%;display: flex;justify-content: center">
         <h4>Copyright © 2018 Abtion</h4>
-    </md-content>
+    </div>
 </template>
 
 <script>
