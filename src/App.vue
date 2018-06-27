@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <AppHeader style="flex: 0 0 auto"></AppHeader>
-        <div class="my-container" >
+        <div class="my-container">
             <router-view class="router-view">
             </router-view>
         </div>
@@ -12,23 +12,31 @@
 <script>
     import AppHeader from "./components/AppHeader";
     import AppFooter from "./components/AppFooter";
+    import {mapState} from 'vuex'
+
     export default {
         name: 'app',
         components: {AppFooter, AppHeader},
+        computed: mapState({
+            token: state => state.token,
+            user: state => state.user
+        })
     }
 </script>
 
 <style>
     @import "~vue-material/dist/vue-material.min.css";
     @import "~vue-material/dist/theme/default.css";
-    html{
+
+    html {
         height: 100%;
     }
 
-    body{
+    body {
 
         height: 100%;
     }
+
     #app {
         height: 100%;
         font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -40,7 +48,7 @@
         color: #2c3e50;
     }
 
-    .my-container{
+    .my-container {
         margin-top: 70px;
         flex: 1 0 auto;
         display: flex;

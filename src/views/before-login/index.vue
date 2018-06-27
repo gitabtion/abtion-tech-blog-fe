@@ -1,7 +1,7 @@
 <template>
     <div class="before-login">
         <md-card class="before-login-card">
-            <h2 style="margin: auto">Abtion Tech</h2>
+            <div class="md-title" style="margin: auto">Abtion Tech</div>
             <md-tabs md-sync-route md-alignment="centered">
                 <md-tab id="tab-login" md-label="登录" to="/before-login/login" class="tab" style="height: max-content">
                     <router-view/>
@@ -54,7 +54,7 @@
                             this.$store.commit(types.LOGIN, this.userData);
                             console.log(this.userData);
                             console.log(window);
-                            this.snackBar('登录成功', 1500)
+                            this.snackBar('登录成功', 2000)
                         })
                 }
             },
@@ -71,7 +71,7 @@
                             .then(response=>{
                                 if (response.data.code===0){
                                     this.password = '';
-                                    this.snackBar('注册成功，请登录',1500)
+                                    this.snackBar('注册成功，请登录',2000)
                                 }
                             })
                     } else {

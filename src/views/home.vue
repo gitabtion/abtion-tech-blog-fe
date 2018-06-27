@@ -15,7 +15,7 @@
     /* eslint-disable */
 
     export default {
-        name: '',
+        name: 'home',
         data() {
             return {
                 msg: ''
@@ -25,7 +25,7 @@
             showSnack(){
                 console.log("clicked!");
                 console.log(this.snackBar);
-                this.snackBar('test',1500);
+                this.snackBar('test',2000);
             }
         }
     }

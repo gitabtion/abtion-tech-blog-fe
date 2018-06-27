@@ -1,20 +1,18 @@
 import BeforeLoginIndex from '../../views/before-login/index'
-
+import Login from '../../views/before-login/login'
+import Register from '../../views/before-login/register'
 export default {
     path: '/before-login',
-    alias: 'before-login/login',
+
     component: BeforeLoginIndex,
     children: [{
         path: 'login',
-        component(resolve) {
-            require(['@/views/before-login/login'], resolve)
-        },
+        alias: '',
+        component: Login
 
 
     }, {
         path: 'register',
-        component(resolve) {
-            require(['@/views/before-login/register'], resolve)
-        }
+        component: Register
     }]
 }
