@@ -4,7 +4,9 @@
                 md-icon="devices_other"
                 md-label="创作你的第一篇文章吧！"
                 md-description="创作你的第一篇文章，开始你的写作之旅">
-            <md-button class="md-primary md-raised">Create first essay</md-button>
+            <router-link :to="{path:'/posts/create'}">
+                <md-button class="md-primary md-raised">Create first essay</md-button>
+            </router-link>
         </md-empty-state>
     </div>
 </template>

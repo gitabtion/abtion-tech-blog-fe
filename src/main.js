@@ -7,6 +7,8 @@ import VueMaterial from 'vue-material'
 import router from './routes/'
 import snackBar from './utils/snackbar'
 import mavonEditor from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
+
 
 Vue.use(VueMaterial);
 Vue.use(mavonEditor);
