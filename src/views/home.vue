@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <div class="index" style="margin: auto">
+        <div class="index" style="margin: auto;">
             <img src="../assets/logo.png"/>
             <h3 class="md-title">Welcome to Abtion Tech</h3>
             <router-link :to="{path:'/before-login/login'}">
@@ -32,7 +32,8 @@
 </script>
 
 <style scoped>
-    .container {
+    .container .index {
+        flex-direction: column;
         display: flex;
         justify-content: center;
         align-items: center;

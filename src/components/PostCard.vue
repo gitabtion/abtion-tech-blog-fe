@@ -7,8 +7,8 @@
             <md-card-content v-html="cardContent"></md-card-content>
 
             <md-card-actions>
-                <md-button :class="onMoreClick" v-if="isMoreButtonShow=false">More</md-button>
-                <md-button :class="onEditClick" v-if="isEditButtonShow=false">More</md-button>
+                <md-button @click="onMoreClick" v-if="showMore">More</md-button>
+                <md-button @click="onEditClick" v-if="showEdit">More</md-button>
             </md-card-actions>
 
         </md-card>
@@ -17,39 +17,40 @@
 
 <script>
     /* eslint-disable */
+    import router from "../routes";
+
     export default {
         name: "PostCard",
-        props: [{
-            cardEssay:{
-                type: Object
-            },
-        },{
-            isMoreButtonShow:{
-                type: Boolean
-            }
-        }],
+        props:{
+            cardEssay: String,
+            showMoreButton: Boolean,
+            showEditButton: Boolean,
+        },
 
         data(){
             return{
                 cardTitle: '',
                 cardContent: '',
-
+                showMore: this.showMoreButton,
+                showEdit: this.showEditButton,
+                essay: JSON.parse(this.cardEssay)
             }
         },
         methods: {
                 onMoreClick: function () {
-                    //路由跳转
+                    this.$router.push(`/posts/${this.essay.id}`)
                 },
                 onEditClick:function () {
                     //路由跳转
                 }
             },
         mounted: function () {
-            // essay = JSON.parse(this.cardEssay);
-            this.cardTitle = this.cardEssay.name;
-            this.cardContent = this.cardEssay.content;
+            console.log(this.cardEssay);
+            let _essay = JSON.parse(this.cardEssay);
+            this.cardTitle = _essay.name;
+            this.cardContent = _essay.content;
             console.log('card1');
-            console.log(this.cardEssay)
+            console.log(_essay)
         }
     }
 </script>
@@ -57,5 +58,6 @@
 <style scoped>
     .post-card{
         width: 800px;
+        margin-bottom: 16px;
     }
 </style>

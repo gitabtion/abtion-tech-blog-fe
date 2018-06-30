@@ -25,7 +25,11 @@ new Vue({
     render: h => h(App),
     data(){
         return{
-            value: ''
+            content: ''
         }
     }
 }).$mount('#app');
+
+new Vue({
+   el
+});

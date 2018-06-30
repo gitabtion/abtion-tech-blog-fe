@@ -2,24 +2,23 @@
 import PostsIndex from '../../views/posts/index'
 import User from '../../views/posts/user'
 import Id from '../../views/posts/id'
-import EmptyState from '../../views/posts/EmptyState'
-import MarkDownEditor from '../../views/posts/MarkDownEditor'
+import MarkDownEditor from '../../views/posts/MarkdownEditor'
 
 export default {
     path: '/posts',
     component: PostsIndex,
     children: [{
-        path: '/user',
+        path: '/posts/user',
         alias: '',
         component: User
     }, {
-       path: '/create',
+       path: '/posts/create',
        component: MarkDownEditor
     }, {
-        path: '/edit/:id',
+        path: '/posts/edit/:id',
         component: MarkDownEditor
     }, {
-        path: '/:id',
+        path: '/posts/:id',
         component: Id
     },]
 }

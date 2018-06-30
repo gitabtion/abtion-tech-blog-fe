@@ -1,7 +1,7 @@
 <template>
-    <md-toolbar class="md-primary" style="position: fixed;top: 0;width: 100%">
+    <md-toolbar class="md-primary" style="position: fixed;top: 0;width: 100%;z-index: 2000">
         <div class="md-toolbar-row md-toolbar-offset">
-            <div class="md-toolbar-section-start">
+            <div class="md-toolbar-section-start" style="flex-wrap: wrap;display: flex">
                 <router-link to="/">
                     <md-button>
                         <h1 class="md-title">Abtion Tech</h1>
@@ -13,16 +13,16 @@
 
             </div>
             <div class="md-toolbar-section-end">
-                <router-link to="/before-login/login"  v-show="!$store.state.user">
+                <router-link to="/before-login/login" v-show="!$store.state.user">
                     <md-button>登录</md-button>
                 </router-link>
-                <router-link to="/before-login/register"  v-show="!$store.state.user">
+                <router-link to="/before-login/register" v-show="!$store.state.user">
                     <md-button>注册</md-button>
                 </router-link>
                 <router-link to="/user">
                     <md-avatar>
-                        <div  v-on:click="onAvaClick">
-                            <img src="../assets/default-ava.jpg" v-show="$store.state.user" alt="Avatar">
+                        <div v-on:click="onAvaClick">
+                            <img :src="ava" v-show="$store.state.user">
                         </div>
                     </md-avatar>
                 </router-link>
@@ -38,21 +38,23 @@
 
     export default {
         name: "AppHeader",
-        data() {
-            return {
-                // isLogined: !!this.$store.state.user
+        data: () => ({
+            ava: '../assets/default-ava.jpg'
+        }),
+        mounted(){
+            console.log(this.$store.state.user);
+            if (this.$store.state.user){
+                let mAva = this.$store.state.user.avatar;
+                if (mAva){
+                    this.ava = mAva;
+                    console.log(this.ava)
+                }
             }
         },
-        // created() {
-        //     console.log(1);
-        //     console.log('getUser:' + this.$store.getters.getUser);
-        //     console.log(typeof(this.$store.getters.getUser));
-        //     this.$store.state.isLogined = !!this.$store.getters.getUser;
-        //     console.log('isLogined:' + this.$store.state.isLogined);
-        // },
-        methods:{
-            onAvaClick:function () {
-                this.$store.commit(types.LOGOUT)
+        methods: {
+            onAvaClick: function () {
+                this.$store.commit(types.LOGOUT);
+                // this.$router.push('/home')
             }
         }
     }

@@ -2,7 +2,7 @@ import Home from '../../views/home'
 import BeforeLogin from './beforeLogin'
 import Posts from './posts'
 import EmptyState from '../../components/EmptyState'
-import MarkdownEditor from '../../views/posts/MarkDownEditor'
+import MarkdownEditor from '../../views/posts/MarkdownEditor'
 
 
 export default [

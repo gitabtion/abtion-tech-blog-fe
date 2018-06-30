@@ -35,8 +35,11 @@
                 hasNameError: false,
                 hasPasswordError: false,
                 hasVerifyPasswordError: false,
-                radio: '0'
+                flag: '0'
             }
+        },
+        mounted(){
+            this.$store.commit(types.TITLE,"登录")
         },
         methods: {
             loginOnclick: function () {
@@ -54,7 +57,7 @@
                         .then(response => {
                             console.log('login');
                             console.log(response);
-                            this.userData = response.data.data;
+                            this.userData = response.data;
                             console.log(this.userData);
                             console.log('login');
                             this.$store.commit(types.LOGIN,this.userData);

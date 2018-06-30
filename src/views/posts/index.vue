@@ -1,11 +1,7 @@
 <template>
-    <!--<div>-->
-        <!--<div class="md-title">Posts</div>-->
-        <!--<div v-bind="essays" v-for="essay in essays" :key="essay">-->
-            <!--<PostCard :cardEssay=essay></PostCard>-->
-        <!--</div>-->
-    <!--</div>-->
-    <router-view></router-view>
+    <div>
+        <router-view></router-view>
+    </div>
 </template>
 
 <script>
@@ -26,14 +22,11 @@
         },
         methods:{
             getEssays(){
-                let user = this.$store.getters.getUser;
-                console.log('user');
-                console.log(user);
-                console.log('user');
-                if (user !== ''){
+                let user = this.$store.state.user;
+                if (user){
                     this.axios.get(api.getUserEssays+'/'+user.id)
                         .then(response=>{
-                            this.essays = response.data.data
+                            this.essays = response.data
                         })
                 }else {
                     this.snackBar("请登录",2000);

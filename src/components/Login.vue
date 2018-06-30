@@ -70,7 +70,7 @@
                 hasNameError: false,
                 hasPasswordError: false,
                 hasVerifyPasswordError: false,
-                radio: '0'
+                flag: '0'
             }
         },
         methods: {
@@ -96,13 +96,13 @@
                 }
             },
             registerOnclick:function(){
-                console.log(this.radio);
+                console.log(this.flag);
                 if (!this.hasError()){
                     if (this.password===this.verifyPassword){
                         let parms = {
                             name: this.username,
                             password: this.password,
-                            sex: this.radio
+                            sex: this.flag
                         };
                         this.axios.post(api.register,parms)
                             .then(response=>{

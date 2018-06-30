@@ -29,6 +29,7 @@ if (window.localStorage.getItem('token')&&window.localStorage.getItem('user')) {
 }
 
 router.beforeEach((to, from, next) => {
+    window.document.title = store.state.title;
     if (to.matched.some(r => r.meta.requireAuth)) {
         if (store.state.token) {
             next();

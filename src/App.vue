@@ -1,11 +1,14 @@
 <template>
     <div id="app">
+        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,500,700,400italic|Material+Icons">
         <AppHeader style="flex: 0 0 auto"></AppHeader>
-        <div class="my-container">
-            <router-view class="router-view">
-            </router-view>
+        <div style="height: 100%;display: flex;flex-direction: column">
+            <div class="my-container">
+                <router-view>
+                </router-view>
+            </div>
+            <AppFooter style="flex: none"></AppFooter>
         </div>
-        <AppFooter style="flex: 0 0 auto"></AppFooter>
     </div>
 </template>
 
@@ -44,12 +47,13 @@
         -moz-osx-font-smoothing: grayscale;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
+        align-items: center;
         color: #2c3e50;
     }
 
     .my-container {
-        margin-top: 90px;
+        margin-top: 64px;
         flex: 1 0 auto;
         display: flex;
         align-items: center;

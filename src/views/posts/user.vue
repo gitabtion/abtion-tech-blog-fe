@@ -1,8 +1,8 @@
 <template>
     <div>
         <div class="md-title">Posts</div>
-        <div v-bind="essays" v-for="essay in essays" :key="essay">
-            <PostCard :cardEssay=JSON.stringify(essay) :isButtonShow=true></PostCard>
+        <div v-bind="essays" v-for="(_essay,index) in essays" :key="index">
+            <PostCard :cardEssay=JSON.stringify(_essay) :showMoreButton=true></PostCard>
         </div>
     </div>
 </template>
@@ -11,7 +11,7 @@
     /* eslint-disable */
     import PostCard from "../../components/PostCard";
     import api from "../../constant/api";
-    import types from '../../store/types'
+    import * as types from "../../store/types";
     export default {
         name: 'user',
         data(){
@@ -21,22 +21,21 @@
         },
         components: {PostCard},
         mounted:function () {
-            this.getEssays()
+            this.getEssays();
+            this.$store.commit(types.TITLE,"我的所有文章")
         },
+
         methods:{
             getEssays(){
-                let user = this.$store.getters.getUser;
-                console.log('user');
-                console.log(user);
-                console.log('user');
+                let user = this.$store.state.user;
                 if (user){
                     this.axios.get(api.getUserEssays+'/'+user.id)
                         .then(response=>{
-                            this.essays = response.data.data;
-                            console.log(this.essays.length);
-                            console.log(this.essays);
-                            if (this.essays.length===0){
+                            let _essays = response.data;
+                            if (_essays.length===0){
                                 this.$router.push({path:'/empty'})
+                            }else {
+                                this.essays = _essays;
                             }
                         })
                 }else {

@@ -42,6 +42,9 @@
                 hasVerifyPasswordError: false,
             }
         },
+        mounted(){
+            this.$store.commit(types.TITLE,"注册")
+        },
         methods: {
             loginOnclick: function () {
 
@@ -56,7 +59,7 @@
                     };
                     this.axios.post(api.login, parms)
                         .then(response => {
-                            this.userData = response.data.data;
+                            this.userData = response.data;
                             this.$store.commit(types.LOGIN, this.userData);
                             console.log(this.userData);
                             console.log(window);
@@ -73,7 +76,7 @@
                         };
                         this.axios.post(api.register,params)
                             .then(response=>{
-                                if (response.data.code===0){
+                                if (response.code===0){
                                     this.password = '';
                                     this.verifyPassword = '';
                                     this.snackBar('注册成功，请登录',2000);

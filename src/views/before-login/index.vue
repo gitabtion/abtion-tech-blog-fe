@@ -33,7 +33,7 @@
                 hasNameError: false,
                 hasPasswordError: false,
                 hasVerifyPasswordError: false,
-                radio: '0'
+                flag: '0'
             }
         },
         methods: {
@@ -50,7 +50,7 @@
                     };
                     this.axios.post(api.login, parms)
                         .then(response => {
-                            this.userData = response.data.data;
+                            this.userData = response.data;
                             this.$store.commit(types.LOGIN, this.userData);
                             console.log(this.userData);
                             console.log(window);
@@ -59,17 +59,17 @@
                 }
             },
             registerOnclick:function(){
-                console.log(this.radio);
+                console.log(this.flag);
                 if (!this.hasError()){
                     if (this.password===this.verifyPassword){
                         let parms = {
                             name: this.username,
                             password: this.password,
-                            sex: this.radio
+                            sex: this.flag
                         };
                         this.axios.post(api.register,parms)
                             .then(response=>{
-                                if (response.data.code===0){
+                                if (response.code===0){
                                     this.password = '';
                                     this.snackBar('注册成功，请登录',2000)
                                 }
