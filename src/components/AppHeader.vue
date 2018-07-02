@@ -7,8 +7,14 @@
                         <h1 class="md-title">Abtion Tech</h1>
                     </md-button>
                 </router-link>
-                <router-link to="/posts" style="margin-left: 10px">
+                <router-link to="/posts" style="margin-left: 16px">
                     <md-button>Posts</md-button>
+                </router-link>
+                <router-link :to="`/user/${this.$store.state.user?this.$store.state.user.id:1}/tags`" v-show="$store.state.user">
+                    <md-button>Tags</md-button>
+                </router-link>
+                <router-link :to="`/user/${this.$store.state.user?this.$store.state.user.id:1}`" v-show="$store.state.user">
+                    <md-button>About</md-button>
                 </router-link>
 
             </div>
@@ -19,12 +25,10 @@
                 <router-link to="/before-login/register" v-show="!$store.state.user">
                     <md-button>注册</md-button>
                 </router-link>
-                <router-link to="/user">
-                    <md-avatar>
-                        <div v-on:click="onAvaClick">
-                            <img :src="ava" v-show="$store.state.user">
-                        </div>
-                    </md-avatar>
+                <router-link to="/">
+                    <div v-on:click="onAvaClick">
+                        <img :src="ava" v-show="$store.state.user" alt="Avatar">
+                    </div>
                 </router-link>
 
             </div>
@@ -41,11 +45,11 @@
         data: () => ({
             ava: '../assets/default-ava.jpg'
         }),
-        mounted(){
+        mounted() {
             console.log(this.$store.state.user);
-            if (this.$store.state.user){
+            if (this.$store.state.user) {
                 let mAva = this.$store.state.user.avatar;
-                if (mAva){
+                if (mAva) {
                     this.ava = mAva;
                     console.log(this.ava)
                 }
@@ -61,5 +65,10 @@
 </script>
 
 <style lang="scss" scoped>
-
+    @import "~vue-material/dist/theme/engine";
+    @import "~vue-material/dist/base/theme";
+    @import "~vue-material/dist/components/MdCard/theme";
+    .router-link-active{
+        text-decoration: none;
+    }
 </style>

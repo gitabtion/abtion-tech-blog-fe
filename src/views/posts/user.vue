@@ -1,9 +1,11 @@
 <template>
     <div>
-        <div class="md-title">Posts</div>
-        <div v-bind="essays" v-for="(_essay,index) in essays" :key="index">
-            <PostCard :cardEssay=JSON.stringify(_essay) :showMoreButton=true></PostCard>
+        <div v-model="essays" v-for="(_essay,index) in essays" :key="index">
+            <PostCard :cardEssay=JSON.stringify(_essay) :showMoreButton=true :showEditButton=false :isAll=false></PostCard>
         </div>
+        <md-button class="md-fab" @click="onAddClick()">
+            <md-icon>add</md-icon>
+        </md-button>
     </div>
 </template>
 
@@ -42,11 +44,19 @@
                     this.snackBar("请登录",2000);
                     this.$router.push({path: '/before-login/login'})
                 }
+            },
+            onAddClick(){
+                this.$router.push('/posts/create')
             }
         }
     }
 </script>
 
 <style scoped>
-
+    .md-fab {
+        z-index: 2000;
+        position: fixed;
+        bottom: 8%;
+        right: 5%;
+    }
 </style>

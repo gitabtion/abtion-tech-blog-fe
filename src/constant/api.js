@@ -4,5 +4,6 @@ export default {
     createEssay: '/essay/create',
     updateEssay: '/essay/update',
     getUserEssays: '/essay/user',
-    getEssayById: '/essay'
+    getEssayById: '/essay',
+    createComment: '/comments/create'
 }

@@ -2,23 +2,36 @@
 import PostsIndex from '../../views/posts/index'
 import User from '../../views/posts/user'
 import Id from '../../views/posts/id'
-import MarkDownEditor from '../../views/posts/MarkdownEditor'
+import CreatePost from '../../views/posts/createPost'
+import EditPost from '../../views/posts/editPost'
 
 export default {
     path: '/posts',
     component: PostsIndex,
     children: [{
-        path: '/posts/user',
+        path: 'user',
         alias: '',
+        meta:{
+            title: '我的所有文章'
+        },
         component: User
     }, {
-       path: '/posts/create',
-       component: MarkDownEditor
+       path: 'create',
+        meta: {
+            title: '新建文章'
+        },
+       component: CreatePost
     }, {
-        path: '/posts/edit/:id',
-        component: MarkDownEditor
+        path: 'edit/:essayId',
+        meta: {
+            title: '编辑文章'
+        },
+        component: EditPost
     }, {
-        path: '/posts/:id',
+        path: ':id',
+        meta: {
+            title: '查看文章'
+        },
         component: Id
     },]
 }

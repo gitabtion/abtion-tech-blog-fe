@@ -12,6 +12,7 @@
     "console": "^0.7.2",
     "http-proxy-middleware": "^0.18.0",
     "js-md5": "^0.7.3",
+    "markdown-it-katex-external": "^1.0.0",
     "mavon-editor": "^2.6.9",
     "node-sass": "^4.9.0",
     "sass": "^1.7.0",

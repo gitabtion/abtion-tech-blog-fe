@@ -1,19 +1,18 @@
 <template>
-    <div class="container">
+    <div>
         <div v-for="(_essay,index) in essays" :key="index">
             <PostCard :cardEssay=JSON.stringify(_essay) :showMoreButton=true :showEditButton=false :isAll=false></PostCard>
         </div>
-        <!--<md-button class="md-fab" @click="onAddClick()">-->
-            <!--<md-icon>add</md-icon>-->
-        <!--</md-button>-->
+        <md-button class="md-fab" @click="onAddClick()">
+            <md-icon>add</md-icon>
+        </md-button>
     </div>
 </template>
 
 <script>
-    /* eslint-disable */
-    import PostCard from '../components/PostCard'
+    import PostCard from '../../components/PostCard'
     export default {
-        name: 'home',
+        name: "Tag",
         data(){
             return{
                 essays: [],
@@ -25,7 +24,7 @@
         },
         methods:{
             getEssayByTag:function () {
-                this.axios.get(`/essay/most-view`)
+                this.axios.get(`/user/${this.$route.params.id}/${this.$route.params.tag}`)
                     .then(response=>{
                         let _essays = response.data;
                         if (_essays.length===0){
@@ -40,12 +39,10 @@
 </script>
 
 <style scoped>
-    .container {
-        flex-direction: column;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    .md-fab {
+        z-index: 2000;
+        position: fixed;
+        bottom: 8%;
+        right: 5%;
     }
-
-
 </style>

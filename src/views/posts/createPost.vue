@@ -18,7 +18,7 @@
                     </div>
                 </div>
             </md-content>
-            <mavon-editor style="height: 600px;" v-model="content"></mavon-editor>
+            <mavon-editor :ishljs="true" style="height: 600px;" v-model="content"></mavon-editor>
         </div>
         <md-button class="md-fab" @click="onDoneClick()">
             <md-icon>done</md-icon>
@@ -34,12 +34,10 @@
         name: "MarkdownEditor",
         data: () => ({
             mPost: {},
-            content: '# hello',
+            content: '',
             flag: '0',
             title: '',
             tag: '',
-            isUpdate: false,
-
         }),
         mounted(){
             this.$store.commit(types.TITLE,"编辑文章")
@@ -86,7 +84,7 @@
     .md-fab {
         z-index: 2000;
         position: fixed;
-        bottom: 10%;
+        bottom: 8%;
         right: 5%;
     }
 </style>

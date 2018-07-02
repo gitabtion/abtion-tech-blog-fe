@@ -1,23 +1,31 @@
 <template>
     <div>
-        <md-card class="post-card">
-            <md-card-header>
-                <div class="md-title" v-text="cardTitle"></div>
-            </md-card-header>
-            <div class="description" style="display: flex">
-                <div style="margin-right: 8px">
-                    <md-icon>visibility</md-icon>
-                </div>
-                <div class="md-content">{{viewNum}}</div>
-            </div>
+        <!--<md-card class="post-card">-->
+        <!--<md-card-header>-->
+        <!--<div class="md-title" v-text="cardTitle"></div>-->
+        <!--</md-card-header>-->
+        <!--<div class="description" style="display: flex">-->
+        <!--<div style="margin-right: 8px">-->
+        <!--<md-icon>visibility</md-icon>-->
+        <!--</div>-->
+        <!--<div class="md-content">{{viewNum}}</div>-->
+        <!--</div>-->
 
-            <md-card-content v-html="cardContent"></md-card-content>
+        <!--<md-card-content v-html="cardContent"></md-card-content>-->
 
-            <md-card-actions>
-                <md-button @click="onEditClick">Edit</md-button>
-            </md-card-actions>
+        <!--<md-card-actions>-->
+        <!--<md-button @click="onEditClick">Edit</md-button>-->
+        <!--</md-card-actions>-->
 
-        </md-card>
+        <!--</md-card>-->
+        <PostCard :show-edit-button=true
+                  :show-more-button=false
+                  :cardEssay=JSON.stringify(essay)
+                  :isAll=true></PostCard>
+        <EditComment></EditComment>
+        <div v-for="(comment,index) in comments" :key="index">
+            <CommentCard :mComment = comment></CommentCard>
+        </div>
     </div>
 </template>
 
@@ -25,52 +33,54 @@
     /* eslint-disable */
     import PostCard from "../../components/PostCard";
     import api from "../../constant/api";
-    import {mavonEditor} from 'mavon-editor'
     import * as types from "../../store/types";
+    import EditComment from "../../components/EditComment";
+    import CommentCard from "../../components/CommentCard";
+
     export default {
         name: "id",
-        components: {PostCard},
-        data(){
-            return{
-                essay: {},
+        components: {CommentCard, EditComment, PostCard},
+        data() {
+            return {
+                essay: {name: 'test'},
                 cardTitle: '',
                 cardContent: '',
                 viewNum: '',
+                essayString: '{"id":2,"authorId":12,"tag":"test","name":"test","content":"# hello","flag":0,"viewNum":107}',
+                comments: [],
             }
         },
-        mounted:function () {
+        mounted: function () {
+            console.log(this.essayString);
             this.getEssay();
+            this.getComments();
         },
         methods: {
-            getEssay:function () {
+            getEssay: function () {
                 console.log(this.$route.params.id);
                 this.axios.get(`${api.getEssayById}/${this.$route.params.id}`)
-                    .then(response=>{
-                        console.log("=============|");
-                        console.log(response);
+                    .then(response => {
                         this.essay = response.data;
-                        console.log(this.essay);
-                        this.cardTitle = this.essay.name;
-                        this.$store.commit(types.TITLE,this.cardTitle);
-                        this.viewNum = this.essay.viewNum;
-                        this.cardContent = mavonEditor.getMarkdownIt().render(this.essay.content);
+                        this.essayString = JSON.stringify(this.essay);
+                        this.$store.commit(types.TITLE, this.cardTitle);
                     })
             },
-            onEditClick:function () {
-                this.snackBar("clicked",2000)
+            onEditClick: function () {
+                if (this.essay.id) {
+                    this.$router.push(`/posts/edit/${this.essay.id}`)
+                }
+            },
+            getComments(){
+                this.axios.get(`/comments/${this.$route.params.id}`)
+                    .then(response => {
+                        this.comments = response.data;
+                        console.log(this.comments)
+                    })
             }
+
         },
     }
 </script>
 
 <style scoped>
-    .post-card{
-        padding: 16px;
-        width: 800px;
-    }
-    .description{
-        display: flex;
-        align-items: center;
-        justify-content: start;
-    }
 </style>

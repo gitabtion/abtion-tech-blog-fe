@@ -22,6 +22,7 @@ new Vue({
     store,
     router,
     snackBar,
+    mavonEditor,
     render: h => h(App),
     data(){
         return{
@@ -30,6 +31,3 @@ new Vue({
     }
 }).$mount('#app');
 
-new Vue({
-   el
-});
