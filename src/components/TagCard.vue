@@ -1,8 +1,8 @@
 <template>
     <router-link :to="`/user/${$store.state.user.id}/${tag}`" style="width: max-content">
-        <md-card class="md-primary" md-theme="black-card" md-with-hover>
-            <div class="md-title">{{tag}}</div>
-        </md-card>
+        <span class="tags-container">
+            <span class="tag-title">{{tag}}</span>
+        </span>
     </router-link>
 </template>
 
@@ -45,10 +45,21 @@
     @include md-register-theme("orange-card", (
             primary: md-get-palette-color(orange, 500)
     ));
-    .md-primary{
-        padding: 16px;
-        margin-bottom: 16px;
-        margin-right: 16px;
+    .tags-container {
+        margin: 0 auto;
+        width: 700px;
+    }
+    .tag-title {
+        display: inline-block;
+        margin: 10px;   
+        font-size: 18.75px;
+        color: #868686;
+    }
+    .tag-title {
+        text-decoration: none;
+        outline: none;
+        border-bottom: 1px solid #999;
+        word-wrap: break-word;
     }
     .router-link-active {
         text-decoration: none;

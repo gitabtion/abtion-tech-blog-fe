@@ -105,9 +105,9 @@
 </script>
 
 <style lang="scss" scoped>
-    // @import "../../node_modules/vue-material/dist/theme/engine";
-    // @import "../../node_modules/vue-material/dist/base/theme";
-    // @import "../../node_modules/vue-material/dist/components/MdCard/theme";
+    @import "../../node_modules/vue-material/dist/theme/engine";
+    @import "../../node_modules/vue-material/dist/base/theme";
+    @import "../../node_modules/vue-material/dist/components/MdCard/theme";
     .post-card {
         padding: 16px;
         width: 800px;
