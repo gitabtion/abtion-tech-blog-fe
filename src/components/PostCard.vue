@@ -1,33 +1,38 @@
 <template>
-    <div>
-        <md-card class="post-card">
-            <md-card-header>
-                <h1 class="md-title" v-text="cardTitle"></h1>
-            </md-card-header>
-            <div class="description" style="display: flex">
-                <div style="margin-right: 8px">
-                    <md-icon>visibility</md-icon>
+        <section>
+            <article>
+                <div class="post-card">
+            <header class="post-header">
+                <h2 class="post-title" v-text="cardTitle"></h2>
+                <div class="post-meta">
+                    <span class="icon-container">
+                        <md-icon class="post-icon">visibility</md-icon>
+                        <span>{{viewNum}}</span>
+                    </span>
+                    <!-- <div class="md-content post-content"></div> -->
+                    <span class="icon-container">
+                        <span class="post-meta-divider">|</span>
+                        <md-icon class="post-icon">access_time</md-icon>
+                        <span>{{updateAt}}</span>
+                    </span>
+                    <span class="icon-container">
+                        <span class="post-meta-divider">|</span>
+                        <md-icon class="post-icon">bookmark_border</md-icon>
+                        <span>{{tag}}</span>
+                    </span>
                 </div>
-                <div class="md-content" style="margin-right: 16px">{{viewNum}}</div>
-                <div style="margin-right: 8px">
-                    <md-icon>access_time</md-icon>
-                </div>
-                <div class="md-content" style="margin-right: 16px">{{updateAt}}</div>
-                <div style="margin-right: 8px">
-                    <md-icon>bookmark_border</md-icon>
-                </div>
-                <div class="md-content">{{tag}}</div>
-            </div>
-
-            <md-card-content v-html="cardContent"></md-card-content>
-
-            <md-card-actions>
+            </header>
+            <div v-html="cardContent"></div>
+            <div class="post-option">
                 <md-button @click="onMoreClick" v-if="showMore">More</md-button>
                 <md-button @click="onEditClick" v-if="showEdit">Edit</md-button>
-            </md-card-actions>
-
-        </md-card>
-    </div>
+            </div>
+            <footer>
+               
+            </footer>
+            </div>
+            </article>
+        </section>
 </template>
 
 <script>
@@ -100,18 +105,50 @@
 </script>
 
 <style lang="scss" scoped>
-    @import "../../node_modules/vue-material/dist/theme/engine";
-    @import "../../node_modules/vue-material/dist/base/theme";
-    @import "../../node_modules/vue-material/dist/components/MdCard/theme";
+    // @import "../../node_modules/vue-material/dist/theme/engine";
+    // @import "../../node_modules/vue-material/dist/base/theme";
+    // @import "../../node_modules/vue-material/dist/components/MdCard/theme";
     .post-card {
         padding: 16px;
         width: 800px;
         margin-bottom: 16px;
     }
+    .post-header {
+        opacity: 1; 
+        display: block; 
+        transform: translateY(0px);
+    }
+    .post-title {
+        text-align: center;
+        word-break: break-word;
+        font-weight: 400;
+    }
 
-    .description {
+    .post-meta {
+        margin: 3px 0 60px 0;
+        color: #999;
+        font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
+        font-size: 14px;
+        text-align: center;
+    }
+
+    .post-icon {
+        margin-right: 3px;
+    }
+
+    .post-option {
         display: flex;
         align-items: center;
-        justify-content: start;
+        justify-content: end;
+    }
+
+    .post-meta-divider {
+        margin: 0 0.5em;
+    }
+    .icon-container {
+        margin-right: 8px;
+    }
+    .post-content {
+        margin-right: 16px;
     }
 </style>

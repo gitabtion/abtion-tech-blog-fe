@@ -1,39 +1,26 @@
 <template>
-    <md-toolbar class="md-primary" style="position: fixed;top: 0;width: 100%;z-index: 2000">
+    <div class="md-primary">
         <div class="md-toolbar-row md-toolbar-offset">
-            <div class="md-toolbar-section-start" style="flex-wrap: wrap;display: flex">
+            <div class="md-toolbar-section-start">
                 <router-link to="/">
-                    <md-button>
                         <h1 class="md-title">Abtion Tech</h1>
-                    </md-button>
                 </router-link>
-                <router-link to="/posts" style="margin-left: 16px">
-                    <md-button>Posts</md-button>
-                </router-link>
-                <router-link :to="`/user/${this.$store.state.user?this.$store.state.user.id:1}/tags`" v-show="$store.state.user">
-                    <md-button>Tags</md-button>
-                </router-link>
-                <router-link :to="`/user/${this.$store.state.user?this.$store.state.user.id:1}`" v-show="$store.state.user">
-                    <md-button>About</md-button>
-                </router-link>
-
+                <router-link to="/posts" style="margin-left: 16px"><span>Posts</span></router-link>
+                <router-link :to="`/user/${this.$store.state.user?this.$store.state.user.id:1}/tags`" v-show="$store.state.user"><span>Tags</span></router-link>
+                <router-link :to="`/user/${this.$store.state.user?this.$store.state.user.id:1}`" v-show="$store.state.user"><span>About</span></router-link>
             </div>
             <div class="md-toolbar-section-end">
-                <router-link to="/before-login/login" v-show="!$store.state.user">
-                    <md-button>登录</md-button>
-                </router-link>
-                <router-link to="/before-login/register" v-show="!$store.state.user">
-                    <md-button>注册</md-button>
-                </router-link>
+                <router-link to="/before-login/login" v-show="!$store.state.user"><span>登录</span></router-link>
+                <router-link to="/before-login/register" v-show="!$store.state.user"><span>注册</span></router-link>
                 <router-link to="/">
                     <div v-on:click="onAvaClick">
-                        <img :src="ava" v-show="$store.state.user" alt="Avatar">
+                        <img :src="ava" class="ava-img" v-show="$store.state.user" alt="Avatar">
                     </div>
                 </router-link>
 
             </div>
         </div>
-    </md-toolbar>
+    </div>
 </template>
 
 <script>
@@ -70,5 +57,35 @@
     @import "~vue-material/dist/components/MdCard/theme";
     .router-link-active{
         text-decoration: none;
+    }
+    .md-primary {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 2000;
+    }
+    .md-toolbar-row {
+        box-shadow: 0 0 16px rgba(0,0,0,0.5);
+        padding: 15px 0;
+        color: #fff;
+        background: #222;
+        margin: 0;
+        display: flex;
+        justify-content: space-between;
+    }
+    .md-toolbar-section-start, .md-toolbar-section-end {
+        display: flex;
+        align-items: center;
+        padding: 0 25px;
+    }
+    .md-toolbar-section-start span, .md-toolbar-section-end span {
+        color: #fff;
+        margin-left: 16px;
+    }
+    .md-title {
+        color: #fff;
+    }
+    .ava-img {
+        width: 50px;
     }
 </style>

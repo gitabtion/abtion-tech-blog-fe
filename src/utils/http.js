@@ -7,7 +7,7 @@ import snackbar from './snackbar'
 
 // axios 配置
 axios.defaults.timeout = 5000;
-axios.defaults.baseURL = 'http://localhost:3010';
+axios.defaults.baseURL = 'http://api.abtion.cn/';
 
 // http request 拦截器
 axios.interceptors.request.use(

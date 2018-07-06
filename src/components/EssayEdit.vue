@@ -2,7 +2,7 @@
     <div class="edit-essay">
         <md-field>
             <label>Title</label>
-            <md-input v-model="essayTitle" style="font-size: xx-large"></md-input>
+            <md-input class="essay-input"  v-model="essayTitle"></md-input>
         </md-field>
         <mavon-editor v-model="essayContent"/>
     </div>
@@ -27,5 +27,9 @@
     .edit-essay{
         display: flex;
         flex-direction: column;
+    }
+
+    .essay-input {
+        font-size: xx-large;
     }
 </style>

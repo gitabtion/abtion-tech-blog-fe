@@ -5,7 +5,7 @@
             <md-textarea v-model="comment"></md-textarea>
         </md-field>
         <md-card-actions>
-            <md-button @click="onCommentClick" style="margin-top: -16px;">评论</md-button>
+            <md-button @click="onCommentClick" class="edit-comment">评论</md-button>
         </md-card-actions>
     </md-card>
 </template>
@@ -40,5 +40,7 @@
 </script>
 
 <style scoped>
-
+.edit-comment {
+    margin-top: -16px;
+}
 </style>
