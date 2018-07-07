@@ -1,7 +1,7 @@
 <template>
     <md-card class="comments-card">
         <div class="comments-header">
-            <img :src="userAva" alt="Avatar" style="margin-right: 16px"/>
+            <img :src="userAva" alt="Avatar" style="margin-right: 16px;height: 40px;width: 40px"/>
             <div class="md-content" style="margin-right: 16px">{{username}}</div>
             <div class="md-content" style="margin-right: 16px;">{{createAt}}</div>
         </div>
@@ -45,5 +45,6 @@
     }
     .comments-header{
         display: flex;
+        align-items: center;
     }
 </style>

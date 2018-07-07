@@ -1,4 +1,4 @@
-/* eslint-disable */
+
 
 import Vue from 'vue'
 import VueRouter from 'vue-router'
@@ -6,7 +6,7 @@ import routes from './map/index'
 import store from "../store/store";
 import * as types from "../store/types"; // 路由映射
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const router = new VueRouter({
     // mode: 'hash|history|abstract',
@@ -18,13 +18,11 @@ const router = new VueRouter({
 // 页面刷新时，重新赋值token及user
 if (window.localStorage.getItem('token')&&window.localStorage.getItem('user')) {
     let user = window.localStorage.getItem('user');
-    console.log(user);
     user = JSON.parse(user);
     let params= {
         token: window.localStorage.getItem('token'),
         user: user
     };
-    console.log(params);
     store.commit(types.LOGIN, params)
 }
 

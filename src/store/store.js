@@ -7,7 +7,8 @@ export default new Vuex.Store({
     state: {
         user: null,
         token: null,
-        title: ''
+        title: '',
+        comment: null
     },
     mutations: {
         [types.LOGIN]: (state, data) => {
@@ -26,7 +27,11 @@ export default new Vuex.Store({
             state.title = data;
         },
         [types.USER]: (state,data)=>{
+            window.localStorage.user = JSON.stringify(data.user);
             state.user = data
         },
+        [types.COMMENT]: (state,data)=>{
+            state.comment = data
+        }
     },
 })

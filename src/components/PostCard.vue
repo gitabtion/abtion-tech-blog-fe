@@ -72,10 +72,12 @@
                 this.axios.get(`${api.getEssayById}/${this.$route.params.id}`)
                     .then(response => {
                         this.essay = response.data;
+                        this.viewNum = this.essay.viewNum;
                         this.cardTitle = this.essay.name;
                         this.cardContent = Utils.mMarkdownIt().render(this.essay.content);
                         this.updateAt = Utils.timetrans(this.essay.updateAt);
                         this.tag = this.essay.tag;
+                        this.showEdit = this.isAll?this.essay.authorId===this.$store.state.user.id:false;
                         this.$store.commit(types.TITLE, this.cardTitle);
                     })
             }
@@ -86,7 +88,6 @@
                 this.getEssay()
             } else {
 
-                console.log(this.cardEssay);
                 let _essay = JSON.parse(this.cardEssay);
                 this.cardTitle = _essay.name;
                 this.viewNum = _essay.viewNum;
@@ -94,6 +95,7 @@
                 this.tag = this.essay.tag;
                 let content = _essay.content.length > 200 ? _essay.content.substring(0,200)+'\n......':_essay.content;
                 this.cardContent = Utils.mMarkdownIt().render(content);
+                this.showEdit = this.isAll?_essay.authorId===this.$store.state.user.id:false;
             }
         }
     }

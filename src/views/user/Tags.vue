@@ -27,7 +27,10 @@
                 this.axios.get(`/user/${this.$store.state.user.id}/tags`)
                     .then(response => {
                         this.tags = response.data;
-                        console.log(this.tags)
+                        console.log(this.tags);
+                        if (this.tags.length===0){
+                            this.$router.push({path:'/empty'})
+                        }
                     })
             }
         }

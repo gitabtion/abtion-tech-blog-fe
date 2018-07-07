@@ -11,7 +11,9 @@
 </template>
 
 <script>
+    /* eslint-disable */
     import api from '../constant/api'
+    import * as types from "../store/types";
     export default {
         name: "EditComment",
         data() {
@@ -28,8 +30,12 @@
                     };
                     this.axios.post(api.createComment,params)
                         .then(response=>{
-                            this.comment = '';
-                            this.snackBar("评论成功！",2000)
+                            if (response){
+                                this.comment = '';
+                                this.snackBar("评论成功！",2000);
+                                // this.$store.commit(types.COMMENT,response.data);
+                                this.router.push(`/posts/${this.$route.params.id}`)
+                            }
                         })
                 } else {
                     this.snackBar("请输入评论内容",2000)

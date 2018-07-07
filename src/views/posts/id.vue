@@ -18,7 +18,7 @@
         <!--</md-card-actions>-->
 
         <!--</md-card>-->
-        <PostCard :show-edit-button=true
+        <PostCard :show-edit-button="editShow"
                   :show-more-button=false
                   :cardEssay=JSON.stringify(essay)
                   :isAll=true></PostCard>
@@ -48,12 +48,14 @@
                 viewNum: '',
                 essayString: '{"id":2,"authorId":12,"tag":"test","name":"test","content":"# hello","flag":0,"viewNum":107}',
                 comments: [],
+                editShow: true
             }
         },
         mounted: function () {
             console.log(this.essayString);
             this.getEssay();
             this.getComments();
+            this.editShow = this.essay.authorId===this.$store.state.user.id
         },
         methods: {
             getEssay: function () {
@@ -62,6 +64,9 @@
                     .then(response => {
                         this.essay = response.data;
                         this.essayString = JSON.stringify(this.essay);
+                        this.cardTitle = this.essay.name;
+                        this.cardContent = this.essay.content;
+                        this.viewNum = this.essay.viewNum;
                         this.$store.commit(types.TITLE, this.cardTitle);
                     })
             },
@@ -74,7 +79,9 @@
                 this.axios.get(`/comments/${this.$route.params.id}`)
                     .then(response => {
                         this.comments = response.data;
-                        console.log(this.comments)
+                        // if (response){
+                        //     this.$store.commit(types.COMMENT,response.data)
+                        // }
                     })
             }
 

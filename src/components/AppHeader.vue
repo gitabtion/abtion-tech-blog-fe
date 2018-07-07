@@ -7,7 +7,7 @@
                         <h1 class="md-title">Abtion Tech</h1>
                     </md-button>
                 </router-link>
-                <router-link to="/posts" style="margin-left: 16px">
+                <router-link to="/posts" style="margin-left: 16px" v-show="$store.state.user">
                     <md-button>Posts</md-button>
                 </router-link>
                 <router-link :to="`/user/${this.$store.state.user?this.$store.state.user.id:1}/tags`" v-show="$store.state.user">
@@ -27,7 +27,7 @@
                 </router-link>
                 <router-link to="/">
                     <div v-on:click="onAvaClick">
-                        <img :src="ava" v-show="$store.state.user" alt="Avatar">
+                        <img :src="$store.state.user?$store.state.user.avatar:ava" v-show="$store.state.user" alt="Avatar" style="height: 40px;width: 40px">
                     </div>
                 </router-link>
 
@@ -43,15 +43,13 @@
     export default {
         name: "AppHeader",
         data: () => ({
-            ava: '../assets/default-ava.jpg'
+            ava: "http://oum3tk6e0.bkt.clouddn.com//blog/head/blog_head_4.png"
         }),
         mounted() {
-            console.log(this.$store.state.user);
             if (this.$store.state.user) {
                 let mAva = this.$store.state.user.avatar;
                 if (mAva) {
                     this.ava = mAva;
-                    console.log(this.ava)
                 }
             }
         },

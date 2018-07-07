@@ -55,11 +55,7 @@
                     };
                     this.axios.post(api.login, params)
                         .then(response => {
-                            console.log('login');
-                            console.log(response);
                             this.userData = response.data;
-                            console.log(this.userData);
-                            console.log('login');
                             this.$store.commit(types.LOGIN,this.userData);
                             this.snackBar('登录成功', 1500);
                             this.$router.push('/posts')

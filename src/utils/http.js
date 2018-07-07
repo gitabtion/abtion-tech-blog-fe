@@ -14,9 +14,7 @@ axios.interceptors.request.use(
     config => {
         if (store.state.token) {
             config.headers.Authorization = `token ${store.state.token}`;
-            console.log(config.headers.Authorization);
             config.headers.token = store.state.token;
-            console.log(config.headers.token);
         }
         return config
     },
@@ -28,7 +26,6 @@ axios.interceptors.request.use(
 // http response 拦截器
 axios.interceptors.response.use(
     response => {
-        console.log(response);
         if (response.status>200){
             switch (response.data.code){
                 case 10001:
@@ -47,11 +44,13 @@ axios.interceptors.response.use(
                     break;
                 case 20001:
                     snackbar("用户信息失效，请重新登录",2000);
+                    store.commit(types.LOGOUT);
                     router.push("/before-login/login");
                     break;
                 default:
                     snackbar(response.data.message,2000);
             }
+
         } else {
             return response.data
         }
