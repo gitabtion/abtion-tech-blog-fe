@@ -1,7 +1,7 @@
 <template>
     <div>
         <div style="display: flex;flex-wrap: wrap;margin-top: auto">
-            <md-content class="md-elevation-2">
+            <md-content class="md-elevation-2" style="flex: 0 0 auto;">
                 <div>
                     <md-field>
                         <label>标题</label>
@@ -18,7 +18,7 @@
                     </div>
                 </div>
             </md-content>
-            <mavon-editor :ishljs="true"  style="height: 600px;" v-model="content"></mavon-editor>
+            <mavon-editor :ishljs="true"  style="height: 600px;flex: 1 0 auto" v-model="content"></mavon-editor>
         </div>
         <md-button class="md-fab" @click="onDoneClick()">
             <md-icon>done</md-icon>
@@ -48,7 +48,7 @@
             onDoneClick: function () {
                 this.mPost.content = this.content;
                 this.mPost.flag = this.flag;
-                this.mPost.title = this.title;
+                this.mPost.name = this.title;
                 this.mPost.tag = this.tag;
                 this.axios.post(api.updateEssay, this.mPost)
                     .then(response => {

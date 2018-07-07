@@ -1,9 +1,9 @@
 <template>
     <md-card class="comments-card">
         <div class="comments-header">
-            <img :src="userAva" alt="Avatar"/>
-            <div class="md-content">{{username}}</div>
-            <div class="md-content">{{createAt}}</div>
+            <img :src="userAva" alt="Avatar" style="margin-right: 16px;height: 40px;width: 40px"/>
+            <div class="md-content" style="margin-right: 16px">{{username}}</div>
+            <div class="md-content" style="margin-right: 16px;">{{createAt}}</div>
         </div>
         <div class="md-content" v-html="content"></div>
     </md-card>
@@ -43,14 +43,8 @@
         padding: 16px;
         margin-bottom: 16px;
     }
-    .comments-header img {
-        width: 50px;
-    }
-
-    .md-content {
-        margin-right: 16px;
-    }
-    .comments-header img {
-        margin-right: 16px;
+    .comments-header{
+        display: flex;
+        align-items: center;
     }
 </style>

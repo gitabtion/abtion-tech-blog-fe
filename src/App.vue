@@ -61,6 +61,7 @@
     .app-container {
         height: 100%;
         display: flex;
+        min-height: 100vh;
         flex-direction: column;
         /* 预留出导航栏的高度 */
         padding-top: 90px;

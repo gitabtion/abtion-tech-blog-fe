@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-model="essays" v-for="(_essay,index) in essays" :key="index">
+        <div v-for="(_essay,index) in essays" :key="index">
             <PostCard :cardEssay=JSON.stringify(_essay) :showMoreButton=true :showEditButton=false :isAll=false></PostCard>
         </div>
         <md-button class="md-fab" @click="onAddClick()">
