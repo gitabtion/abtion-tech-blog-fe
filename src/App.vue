@@ -30,10 +30,6 @@
 <style>
     @import "~vue-material/dist/vue-material.min.css";
     @import "~vue-material/dist/theme/default.css";
-    *{
-        margin: 0;
-        padding: 0;
-    }
 
     #app {
         height: 100%;

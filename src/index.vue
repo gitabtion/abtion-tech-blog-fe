@@ -34,11 +34,11 @@
 </script>
 
 <style scoped>
-    /* .container {
+    .container {
         display: flex;
         justify-content: center;
         align-items: center;
-    } */
+    }
 
 
 </style>
